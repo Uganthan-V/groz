@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "484518266518",
+    "project_id": "groz-52df0",
+    "storage_bucket": "groz-52df0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484518266518:android:19e6bb40cbc15387e5e4b7",
+        "android_client_info": {
+          "package_name": "com.example.groz1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6vI5s17D7hfjVAT2HuesZeRnCJDDvkwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484518266518:android:b75fd643695337a7e5e4b7",
+        "android_client_info": {
+          "package_name": "com.example.groz2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6vI5s17D7hfjVAT2HuesZeRnCJDDvkwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
