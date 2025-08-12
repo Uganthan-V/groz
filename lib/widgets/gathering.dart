@@ -134,7 +134,9 @@ class GatheringWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isCurrent ? Colors.green[100] : Colors.blue[100], // Highlight current team
+        color: isCurrent
+            ? Colors.green[100]
+            : Colors.blue[100], // Highlight current team
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -146,13 +148,12 @@ class GatheringWidget extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        title: Text(
-          teamName,
-          style: TextStyle(fontSize: 18),
-        ),
+        title: Text(teamName, style: TextStyle(fontSize: 18)),
         trailing: isAdmin && !isSelf
             ? Icon(Icons.settings, color: Colors.blue[600])
-            : (!isSelf ? Icon(Icons.exit_to_app, color: Colors.red[600]) : null),
+            : (!isSelf
+                  ? Icon(Icons.exit_to_app, color: Colors.red[600])
+                  : null),
         onTap: onTap,
       ),
     );
