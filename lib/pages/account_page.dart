@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +5,6 @@ import '../widgets/greet.dart';
 import './team/create_team.dart';
 import './team/manage_team.dart';
 import '../widgets/gathering.dart';
-// import '../service/handle_teams.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -16,7 +14,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  List<Map<String, String>> _teams = []; // Store teamId and name as strings
+  List<Map<String, dynamic>> _teams = []; // Store teamId, name, and isAdmin
 
   @override
   void initState() {
@@ -34,16 +32,27 @@ class _AccountPageState extends State<AccountPage> {
           .doc(user.uid)
           .collection('current_teams')
           .get();
-      final teams = snapshot.docs.map((doc) {
+      final teams = await Future.wait(snapshot.docs.map((doc) async {
         final data = doc.data() as Map<String, dynamic>;
+        final teamId = doc.id as String;
+        final teamName = data['name'] as String;
+        // Fetch isAdmin from members subcollection
+        final memberSnapshot = await FirebaseFirestore.instance
+            .collection('teams')
+            .doc(teamId)
+            .collection('members')
+            .doc(user.uid)
+            .get();
+        final isAdmin = memberSnapshot.exists && memberSnapshot.data()?['role'] == 'admin';
         return {
-          'teamId': doc.id as String,
-          'name': data['name'] as String,
+          'teamId': teamId,
+          'name': teamName,
+          'isAdmin': isAdmin,
         };
-      }).toList();
+      }).toList());
       print('Fetched teams: $teams');
       setState(() {
-        _teams = teams.cast<Map<String, String>>(); // Update teams state
+        _teams = teams; // Update teams state with isAdmin
       });
     } catch (e) {
       print('Error fetching team IDs: $e');
@@ -185,16 +194,15 @@ class _AccountPageState extends State<AccountPage> {
                       return Center(child: Text('No gatherings yet'));
                     }
                     return ListView.builder(
-                      itemCount: teams.length,
+                      itemCount: _teams.length, // Use _teams for isAdmin
                       itemBuilder: (context, index) {
-                        final team = teams[index];
+                        final team = _teams[index];
                         final teamId = team['teamId']!;
                         final teamName = team['name']!;
-                        final isAdmin = false; // Placeholder, should retrieve from Firebase
+                        final isAdmin = team['isAdmin'] as bool;
                         return GestureDetector(
                           onLongPress: () {
-                            // Assuming !isSelf check is handled by Firestore or app logic
-                            _showLeaveTeamDialog(teamId);
+                            _showLeaveTeamDialog(teamId); // All users can leave
                           },
                           child: GatheringWidget(
                             teamId: teamId,
@@ -213,7 +221,7 @@ class _AccountPageState extends State<AccountPage> {
                                       ),
                                     );
                                   }
-                                : () {},
+                                : () {}, // Only admins can manage
                           ),
                         );
                       },
