@@ -2,14 +2,14 @@
 
 **Groz** is a cross-platform grocery management application built using **Flutter** and **Firebase**. Designed for families, students, and professionals, the app enables collaborative grocery list creation and team-based coordination with features like voice input, smart recommendations, and seamless real-time sync.
 
-> 🚀 Supports: Android, iOS, Web, Windows, Linux, macOS
+> 🚀 Supports: Android, Web.
 
 ---
 
 ## ✨ Features
 
 - **🧾 Team-Based Grocery Lists**  
-  Share and manage grocery lists with team members in real time.
+  Share and manage grocery lists with team members (tailored for families, college groups, and professional teams) in real time.
 
 - **🎤 Voice Input**  
   Add items hands-free with mic-enabled voice commands.
@@ -23,7 +23,7 @@
   - Offline data persistence for reliability
 
 - **🖥️ Cross-Platform Support**  
-  Runs smoothly on Android, iOS, Web, Windows, Linux, and macOS.
+  Runs smoothly on Android and Web.
 
 - **🎨 Modern UI**  
   Clean, gradient-based design with custom navigation and Material components.
