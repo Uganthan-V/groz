@@ -2959,7 +2959,7 @@ class _ListingPageState extends State<ListingPage> {
           ),
           SizedBox(width: 10),
           Text(
-            '$price',
+            price,
             style: TextStyle(fontSize: 14, color: Colors.black),
           ),
           if (!isDone)

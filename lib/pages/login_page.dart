@@ -11,7 +11,7 @@ import 'account_page.dart';
 class LoginPage extends StatefulWidget {
   final VoidCallback? onLogin;
 
-  const LoginPage({Key? key, this.onLogin}) : super(key: key);
+  const LoginPage({super.key, this.onLogin});
 
   @override
   _LoginPageState createState() => _LoginPageState();

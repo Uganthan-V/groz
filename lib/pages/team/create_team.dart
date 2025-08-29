@@ -17,7 +17,7 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  List<String> _confirmedEmails = [];
+  final List<String> _confirmedEmails = [];
   List<String> _emailSuggestions = [];
 
   @override
@@ -71,7 +71,7 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
       final snapshot = await FirebaseFirestore.instance
           .collection('users')
           .where('email', isGreaterThanOrEqualTo: query)
-          .where('email', isLessThanOrEqualTo: query + '\uf8ff')
+          .where('email', isLessThanOrEqualTo: '$query\uf8ff')
           .limit(5)
           .get();
       setState(() {

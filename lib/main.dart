@@ -47,6 +47,8 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthCheck extends StatefulWidget {
+  const AuthCheck({super.key});
+
   @override
   _AuthCheckState createState() => _AuthCheckState();
 }
@@ -195,10 +197,10 @@ class _AuthCheckState extends State<AuthCheck> {
         ),
       ),
       child: SafeArea(
-        child: _initialScreen!,
         top: true,
         bottom: false,
         maintainBottomViewPadding: false,
+        child: _initialScreen!,
       ),
     );
   }

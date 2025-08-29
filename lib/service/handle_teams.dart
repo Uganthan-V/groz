@@ -148,7 +148,7 @@ class TeamManager {
     try {
       final currentTeamsSnapshot = await _firestore
           .collection('users')
-          .doc(_currentUser!.uid)
+          .doc(_currentUser.uid)
           .collection('current_teams')
           .get();
 
@@ -163,7 +163,7 @@ class TeamManager {
 
       final selfTeamSnapshot = await _firestore
           .collection('teams')
-          .where('admin', isEqualTo: _currentUser!.uid)
+          .where('admin', isEqualTo: _currentUser.uid)
           .where('isSelf', isEqualTo: true)
           .get();
 

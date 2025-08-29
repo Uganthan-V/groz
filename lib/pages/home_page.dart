@@ -547,7 +547,7 @@ class _HomePageState extends State<HomePage> {
                     return Center(child: CircularProgressIndicator());
                   }
                   var recommendations = snapshot.data!.docs;
-                  return Container(
+                  return SizedBox(
                     height: 350,
                     child: ListView.builder(
                       shrinkWrap: true,

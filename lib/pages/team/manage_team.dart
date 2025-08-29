@@ -24,7 +24,7 @@ class _ManageTeamPageState extends State<ManageTeamPage> {
   final _passwordController = TextEditingController();
   final _addMemberController = TextEditingController();
   bool _isPasswordVerified = false;
-  List<String> _confirmedEmails = [];
+  final List<String> _confirmedEmails = [];
   List<String> _emailSuggestions = [];
 
   @override
@@ -174,7 +174,7 @@ class _ManageTeamPageState extends State<ManageTeamPage> {
       final snapshot = await FirebaseFirestore.instance
           .collection('users')
           .where('email', isGreaterThanOrEqualTo: query)
-          .where('email', isLessThanOrEqualTo: query + '\uf8ff')
+          .where('email', isLessThanOrEqualTo: '$query\uf8ff')
           .limit(5)
           .get();
       setState(() {

@@ -33,8 +33,8 @@ class _AccountPageState extends State<AccountPage> {
           .collection('current_teams')
           .get();
       final teams = await Future.wait(snapshot.docs.map((doc) async {
-        final data = doc.data() as Map<String, dynamic>;
-        final teamId = doc.id as String;
+        final data = doc.data();
+        final teamId = doc.id;
         final teamName = data['name'] as String;
         // Fetch isAdmin from members subcollection
         final memberSnapshot = await FirebaseFirestore.instance
@@ -185,7 +185,7 @@ class _AccountPageState extends State<AccountPage> {
                     final teams = snapshot.data?.docs.map((doc) {
                       final data = doc.data() as Map<String, dynamic>;
                       return {
-                        'teamId': doc.id as String,
+                        'teamId': doc.id,
                         'name': data['name'] as String,
                       };
                     }).toList() ?? [];
